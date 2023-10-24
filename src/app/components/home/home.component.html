@@ -1,0 +1,89 @@
+<form
+  class="container form-control mt-5 bg-dark border-0"
+  (ngSubmit)="onSubmit(Form)"
+  #Form="ngForm"
+>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      aria-describedby="emailHelp"
+      placeholder="Email"
+      ngModel
+      required
+      email
+      #modelEmail="ngModel"
+      [ngClass]="
+        modelEmail.invalid && (modelEmail.dirty || modelEmail.touched)
+          ? 'is-invalid'
+          : ''
+      "
+    />
+ 
+    <div
+      *ngIf="modelEmail.invalid"
+      id="validationServerUsernameFeedback"
+      class="invalid-feedback"
+    >
+      Please enter your Email.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      name="password"
+      placeholder="password"
+      ngModel
+      required
+      #modelPassword="ngModel"
+      minlength="3"
+      [ngClass]="
+        modelPassword.invalid && (modelPassword.dirty || modelPassword.touched)
+          ? 'is-invalid'
+          : ''
+      "
+    />
+    <div
+      *ngIf="modelPassword.invalid"
+      id="validationServerUsernameFeedback"
+      class="invalid-feedback"
+    >
+      Please enter your password.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label" name="Phone"
+      >Phone number</label
+    >
+    <input
+      type="number"
+      class="form-control"
+      id="exampleInputPassword1"
+      name="phoneNumber"
+      placeholder="phoneNumber"
+      ngModel
+      required
+      #modelPhone="ngModel"
+      minlength="10"
+      [ngClass]="
+        modelPhone.invalid && (modelPhone.dirty || modelPhone.touched)
+          ? 'is-invalid'
+          : ''
+      "
+    />
+    <div
+      *ngIf="modelPhone.invalid"
+      id="validationServerUsernameFeedback"
+      class="invalid-feedback"
+    >
+      Please enter your phone Number.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-danger" [disabled] = "(!modelPassword.valid || !modelEmail.valid||!modelPhone.valid)"
+    Login>Submit</button>
+</form>
